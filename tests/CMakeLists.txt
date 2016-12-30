@@ -5,6 +5,7 @@ include_directories(${GTEST_INCLUDE_DIR})
 
 set (TESTS
 	Fake
+	ConfigurationLoad
 	FileRange
 	HeaderParsers
 	HttpServer
