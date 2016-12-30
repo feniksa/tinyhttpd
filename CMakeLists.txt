@@ -18,11 +18,11 @@ endif()
 
 # --- Libraries sectoin
 find_package(Poco REQUIRED Foundation Net Util JSON XML)
-#set (LIBS ${LIBS} ${Poco_LIBRARIES})
+set (LIBS ${LIBS} ${Poco_LIBRARIES})
 
 find_package(Boost 1.56 COMPONENTS program_options locale system filesystem REQUIRED)
 include_directories( ${Boost_INCLUDE_DIR} )
-#set (LIBS ${LIBS} ${Boost_LIBRARIES})
+set (LIBS ${LIBS} ${Boost_LIBRARIES})
 
 add_definitions("-std=c++11"
                 "-fno-elide-constructors"
