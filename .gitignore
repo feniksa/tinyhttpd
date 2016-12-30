@@ -31,3 +31,4 @@
 # Ignore files
 *.swp
 build/*
+compile_commands.json
