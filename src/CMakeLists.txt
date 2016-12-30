@@ -1,6 +1,6 @@
 include_directories(${CMAKE_BINARY_DIR}/src)
 
-set (LIB_SRCS
+set (SOURCES
 	RequestHandlerFactory.cpp
 	HttpServer.cpp
 	HttpServerConf.cpp
@@ -13,12 +13,12 @@ set (LIB_SRCS
 	WebDirectory.cpp
 )
 
-add_library(tinyhttp_daemon STATIC ${LIB_SRCS})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
 #target_link_libraries(${PROJECT_NAME}_daemon ${PROJECT_NAME}_cpsp ${PROJECT_NAME}_api)
 
-add_executable( tinyhttpd main.cpp)
-target_link_libraries( tinyhttpd  ${LIBS} tinyhttp_daemon tinyhttp_cpsp tinyhttp_api)
-install(TARGETS tinyhttpd RUNTIME DESTINATION usr/bin)
+add_executable(${PROJECT_NAME}d main.cpp)
+target_link_libraries(${PROJECT_NAME}d  ${PROJECT_NAME} ${LIBS} tinyhttp_cpsp tinyhttp_api)
+install(TARGETS ${PROJECT_NAME}d RUNTIME DESTINATION usr/bin)
 
 add_subdirectory(cpsp)
 add_subdirectory(api)

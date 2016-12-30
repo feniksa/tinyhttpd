@@ -24,7 +24,7 @@ target_link_libraries(tests_main
 	${GTEST_LIBRARIES}
 	${GTEST_MAIN_LIBRARY}
 	${LIBS}
-	tinyhttp_daemon
+	${PROJECT_NAME}
 	tinyhttp_cpsp
 	tinyhttp_api
 )
