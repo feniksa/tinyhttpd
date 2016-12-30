@@ -3,9 +3,20 @@ cmake_minimum_required(VERSION 3.2)
 set (PROJECT_NAME TinyHttp)
 project(${PROJECT_NAME}  CXX)
 
+# --- Options
 option(USE_OPENRC "Install openrc run script" ON)
 option(BUILD_TESTS "Build unit tests" ON)
 
+# --- helper for youcompleteme
+set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
+if( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json" )
+  execute_process( COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json
+    ${CMAKE_CURRENT_SOURCE_DIR}/compile_commands.json
+  )
+endif()
+
+# --- Libraries sectoin
 find_package(Poco REQUIRED Foundation Net Util JSON XML)
 #set (LIBS ${LIBS} ${Poco_LIBRARIES})
 

@@ -1,0 +1,20 @@
+<div ng-repeat="f in files">
+	<a href="#/phones/{{f.name}}">{{f.name}}</a>
+</div>
+
+<table class="table table-condensed">
+<thead>
+	<tr>        		
+    	<th>Name</th>
+        <th>Size</th>
+        <th>Last Modified</th>         
+	</tr>
+</thead>
+<tbody>
+	<tr ng-repeat="f in files">
+		<td><a href="/{{f.name}}">{{f.name}}</a></td>
+    	<td>{{ f.size }}</td>
+    	<td>{{ f.modified }}</td>
+	</tr>
+</tbody>
+</table>
