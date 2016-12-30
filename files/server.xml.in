@@ -1,0 +1,7 @@
+<server>
+	<port>8082</port>
+	<tcpKeepAlive>true</tcpKeepAlive>
+	<maxKeepAliveRequests>0</maxKeepAliveRequests>
+	<threads>0</threads>
+	<maxTcpQueue>0</maxTcpQueue>
+</server>

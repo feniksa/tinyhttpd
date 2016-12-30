@@ -1,0 +1,19 @@
+#!/sbin/runscript
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting ${SVCNAME}"
+
+	start-stop-daemon --background --start -- /usr/bin/tinyhttpd -c /etc/tinyhttp.d --pidfile=/run/tinyhttpd.pid
+
+	eend
+}
+
+stop() {
+	start-stop-daemon --stop -p /run/tinyhttpd.pid
+}
+
+# vim: ts=4 filetype=gentoo-init-d

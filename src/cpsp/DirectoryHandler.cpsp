@@ -1,0 +1,63 @@
+<%@ page class="DirectoryHandler" %>
+<%@ header include="Poco/Path.h"%>
+<%@ impl include="Poco/SortedDirectoryIterator.h"%>
+<%@ impl include="Poco/URI.h"%>
+<%@ impl include="Poco/DateTimeFormat.h"%>
+<%@ impl include="Poco/DateTimeFormatter.h"%>
+<%@ impl include="mime.h"%>
+<%@ page context="Poco::Path" %>
+<%
+	Poco::SortedDirectoryIterator it(context());
+	Poco::SortedDirectoryIterator end;
+
+	const FileMime updir = fileicon("..");
+
+	std::string url;
+	if (*request.getURI().rbegin() != '/')
+		url = request.getURI() + Poco::Path::separator();
+	else
+		url = request.getURI();
+
+	Poco::URI uri(request.getURI());
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Index of <%=uri.getPath()%></title>
+	<link href="/css/directory.css" rel="stylesheet">
+</head>
+<body>
+	<h1>Index of <%=uri.getPath()%></h1>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Last modified</th>
+			<th>Size</th>
+		</tr>
+		<% if (request.getURI() != "/") { %>
+		<tr>
+			<td><img alt="<%=updir.text%>" src="/icons/<%=updir.icon%>" /><a href="<%=url+".." %>">..</a></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<% } %>
+		<% while (it != end) { %>
+			<%
+				std::string urlpath = (request.getURI() != "/") ? url : "";
+				urlpath += it.name();
+				std::string size = (it->isDirectory())?"-" : std::to_string(it->getSize());
+			%>
+		<tr>
+			<td>
+				<img alt="<%=fileicon(it->path()).text%>" src="/icons/<%=fileicon(it->path()).icon%>" />
+				<a href="<%= urlpath %>"><%= it.name() %></a>
+			</td>
+			<td><%= Poco::DateTimeFormatter::format(it->getLastModified(), Poco::DateTimeFormat::SORTABLE_FORMAT) %></td>
+			<td><%= size %></td>
+		</tr>
+		<% ++it; } %>
+	</table>
+	<p>Scm server at localhost</p>
+</body>
+</html>

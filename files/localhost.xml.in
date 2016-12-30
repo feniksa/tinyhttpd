@@ -1,0 +1,6 @@
+<directory>
+	<alias>/</alias>
+	<path>/var/www/localhost/htdocs</path>
+	<followSymLinks>false</followSymLinks>
+	<indexes>true</indexes>
+</directory>

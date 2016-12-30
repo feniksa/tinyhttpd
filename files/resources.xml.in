@@ -1,0 +1,5 @@
+<directory>
+	<path>/var/lib/tinyhttp.d/htdocs</path>
+	<followSymLinks>false</followSymLinks>
+	<indexes>false</indexes>
+</directory>
