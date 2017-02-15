@@ -23,5 +23,5 @@ TEST_F(ConfigurationLoad, noFile)
 
 	bool result;
 	result = conf.load("/fdafasfsdfasfasfsafsdf");
-	GTEST_ASSERT(!result);
+	ASSERT_FALSE(result);
 }

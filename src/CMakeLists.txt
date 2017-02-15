@@ -1,6 +1,7 @@
 include_directories(${CMAKE_BINARY_DIR}/src)
 
 set (SOURCES
+	Configuration.cpp
 	RequestHandlerFactory.cpp
 	HttpServer.cpp
 	HttpServerConf.cpp
